@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio de Nelson Erik Frias Galindo</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
+        
+        body {
+            background-image: url(Imagenes/spacee3.gif);
+            background-size: cover;
+            font-family: 'Crimson Text', serif;
+            font-weight: 400;
+            margin: 0;
+            padding: 0;
+            /*background: linear-gradient(135deg, #000 0%, #111 100%); /* Negro mate con gradiente sutil */
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+        }
+        /* Vectores de peces en el fondo */
+        .fish-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+        }
+        .fish-bg svg {
+            position: absolute;
+        }
+        .fish1 { top: 10%; left: 10%; animation: swim 10s infinite linear; }
+        .fish2 { top: 30%; right: 15%; animation: swim 12s infinite linear reverse; }
+        .fish3 { bottom: 20%; left: 20%; animation: swim 8s infinite linear; }
+        @keyframes swim {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(100vw); }
+        }
+        header {
+            text-align: center;
+            padding: 50px 20px;
+        }
+        .photo-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: #333;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 3px solid #fff;
+        }
+        .photo-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .photo-circle input {
+            display: none;
+        }
+        .photo-circle label {
+            cursor: pointer;
+            color: #fff;
+            font-size: 14px;
+        }
+        h1 {
+            font-size: 2.5em;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin: 10px 0;
+            letter-spacing: 2px; /* Para un toque llamativo */
+        }
+        section {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+        h2 {
+            color: #fff;
+            font-weight: 600;
+            border-bottom: 2px solid #fff;
+            padding-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        .skills-list {
+            list-style-type: disc; /* Bullets para la lista de habilidades */
+            padding-left: 20px; /* Espacio para bullets */
+        }
+        .projects {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .project-card {
+            background: #222;
+            border: 1px solid #fff;
+            border-radius: 10px;
+            width: 250px;
+            margin: 10px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .project-card:hover {
+            transform: scale(1.05);
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background: #111;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 500px;
+            text-align: center;
+        }
+        .close {
+            float: right;
+            cursor: pointer;
+            font-size: 20px;
+        }
+        .tools {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            list-style-type: none;
+            padding: 0;
+        }
+        .tool {
+            background: #333;
+            border: 1px solid #fff;
+            border-radius: 10px;
+            width: 150px;
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .tool:hover {
+            transform: scale(1.05);
+        }
+        .tool img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            margin-bottom: 10px;
+            display: none; /* Oculto inicialmente */
+        }
+        .tool label {
+            cursor: pointer;
+            color: #fff;
+            font-size: 12px;
+        }
+        .tool input {
+            display: none;
+        }
+        .portfolio-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #fff;
+            color: #000;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: 600;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .portfolio-button:hover {
+            background-color: #000;
+            color: #fff;
+            border: 1px solid #fff;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.9);
+        }
+    </style>
+</head>
+<body>
+    <div class="fish-bg">
+        <!-- Vectores SVG simples de peces -->
+        <svg class="fish1" width="50" height="30" viewBox="0 0 50 30">
+            <path d="M10 15 Q20 5 30 15 Q20 25 10 15 Z" fill="#555"/>
+            <circle cx="35" cy="15" r="3" fill="#fff"/>
+        </svg>
+        <svg class="fish2" width="60" height="40" viewBox="0 0 60 40">
+            <path d="M15 20 Q25 10 35 20 Q25 30 15 20 Z" fill="#666"/>
+            <circle cx="40" cy="20" r="4" fill="#fff"/>
+        </svg>
+        <svg class="fish3" width="40" height="25" viewBox="0 0 40 25">
+            <path d="M8 12 Q15 5 22 12 Q15 19 8 12 Z" fill="#444"/>
+            <circle cx="25" cy="12" r="2" fill="#fff"/>
+        </svg>
+    </div>
+
+    <header>
+        <div class="photo-circle">
+            <img id="profileImg" src="" alt="Foto de perfil" style="display: none;">
+            <label for="fileInput">Haz clic para subir foto</label>
+            <input type="file" id="fileInput" accept="image/*">
+        </div>
+        <h1>Nelson Erik Frias Galindo</h1>
+    </header>
+
+    <section id="about">
+        <h2>Sobre mí</h2>
+        <p>Soy estudiante de Diseño Gráfico, actualmente cursando el 7° Tetramestre. Me considero una persona creativa y con facilidad para adaptarme a diferentes estilos de diseño y nuevos programas. Manejo herramientas como Word, Illustrator, Photoshop, InDesign, MediBang y Canva, al igual que soy ilustrador, utilizo programas como Krita, MediBang y lo que me permite desarrollar proyectos tanto de diseño gráfico de comunicación visual y de ilustrador.</p>
+    </section>
+
+    <section id="skills">
+        <h2>Manejo de herramientas y habilidades</h2>
+        <ul class="skills-list">
+            <li><strong>Manejo de herramientas de diseño y edición:</strong> Adobe Illustrator, Photoshop, InDesign y Canva.</li>
+            <li><strong>Manejo de programas de oficina:</strong> Word, Excel y PowerPoint.</li>
+            <li><strong>Manejo de programas de ilustración:</strong> Krita, MediBang, Clip Studio y MediBang.</li>
+            <li><strong>Capacidad para adaptarme a distintos estilos gráficos y aprender rápidamente nuevos programas.</strong></li>
+            <li><strong>Experiencia en atención al cliente y manejo de caja, con trato cordial y resolución de necesidades.</strong></li>
+            <li><strong>Habilidades de trabajo en equipo, organización y compromiso profesional.</strong></li>
+        </ul>
+    </section>
+
+    <section id="projects">
+        <h2>Mis Proyectos</h2>
+        <div class="projects">
+            <div class="project-card" onclick="openModal('modal1')">Diseño de logotipos</div>
+            <div class="project-card" onclick="openModal('modal2')">Ilustraciones</div>
+            <div class="project-card" onclick="openModal('modal3')">Revistas</div>
+        </div>
+    </section>
+
+    <section id="tools">
+        <h2>Herramientas que utilizo como ilustrador</h2>
+        <ul class="tools">
+            <li class="tool">
+                <img id="imgIllustrator" src="" alt="Illustrator">
+                <label for="fileIllustrator">Subir imagen para Illustrator</label>
+                <input type="file" id="fileIllustrator" accept="image/*">
+            </li>
+            <li class="tool">
+                <img id="imgPhotoshop" src="" alt="Photoshop">
+                <label for="filePhotoshop">Subir imagen para Photoshop</label>
+                <input type="file" id="filePhotoshop" accept="image/*">
+            </li>
+            <li class="tool">
+                <img id="imgInDesign" src="" alt="InDesign">
+                <label for="fileInDesign">Subir imagen para InDesign</label>
+                <input type="file" id="fileInDesign" accept="image/*">
+            </li>
+            <li class="tool">
+                <img id="imgPremierPro" src="" alt="Premier Pro">
+                <label for="filePremierPro">Subir imagen para Premier Pro</label>
+                <input type="file" id="filePremierPro" accept="image/*">
+            </li>
+            <li class="tool">
+                <img id="imgAnimate" src="" alt="Animate">
+                <label for="fileAnimate">Subir imagen para Animate</label>
+                <input type="file" id="fileAnimate" accept="image/*">
+            </li>
+            <li class="tool">
+                <img id="imgKrita" src="" alt="Krita">
+                <label for="fileKrita">Subir imagen para Krita</label>
+                <input type="file" id="fileKrita" accept="image/*">
+            </li>
+            <li class="tool">
+                <img id="imgMediBang" src="" alt="MediBang">
+                <label for="fileMediBang">Subir imagen para MediBang</label>
+                <input type="file" id="fileMediBang" accept="image/*">
+            </li>
+        </ul>
+    </section>
+
+    <section id="external-links">
+        <h2>Enlaces Externos</h2>
+        <p>Explora más de mi trabajo en plataformas externas.</p>
+        <a href="https://www.behance.net/nelsongalindo2" target="_blank" class="portfolio-button">Mi portafolio</a>
+    </section>
+
+    <footer>
+        <p>Contacto: <strong>8136188260</strong> | <a href="mailto:nelsongalindi2006@gmail.com" style="color: #fff;">nelsongalindi2006@gmail.com</a></p>
+    </footer>
+
+    <!-- Modales -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal1')">&times;</span>
+            <h3>Diseño de logotipos</h3>
+            <p>Diseños de empresas o sobre proyectos. Aquí puedes agregar imágenes o descripciones detalladas de tus trabajos.</p>
+        </div>
+    </div>
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal2')">&times;</span>
+            <h3>Ilustraciones</h3>
+            <p>Diseño de personajes y fan arts. Incluye ejemplos de tus ilustraciones aquí.</p>
+        </div>
+    </div>
+    <div id="modal3" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal3')">&times;</span>
+            <h3>Revistas</h3>
+            <p>Proyectos de revistas. Agrega detalles sobre tus diseños editoriales.</p>
+        </div>
+    </div>
+
+    <script>
+        // Función para subir imagen al círculo de perfil
+        document.getElementById('fileInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('profileImg').src = e.target.result;
+                    document.getElementById('profileImg').style.display = 'block';
+                    document.querySelector('.photo-circle label').style.display = 'none';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Funciones para subir imágenes a herramientas
+        const toolInputs = ['fileIllustrator', 'filePhotoshop', 'fileInDesign', 'filePremierPro', 'fileAnimate', 'fileKrita', 'fileMediBang'];
+        toolInputs.forEach(inputId => {
+            document.getElementById(inputId).addEventListener('change', function(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    const imgId = 'img' + inputId.replace('file', '');
+                    reader.onload = function(e) {
+                        document.getElementById(imgId).src = e.target.result;
+                        document.getElementById(imgId).style.display = 'block';
+                        event.target.previousElementSibling.style.display = 'none'; // Oculta el label
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+
+        // Funciones para modales
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'flex';
+        }
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+        // Cerrar modal al hacer clic fuera
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        };
+    </script>
+</body>
+</html>
